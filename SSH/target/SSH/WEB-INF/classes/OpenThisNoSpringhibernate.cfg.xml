@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!--Use the mappings and properties specified in an application resource named hibernate.cfg.xml.-->
+<hibernate-configuration>
+    <session-factory>
+        <!--数据库的连接信息-->
+        <property name="hibernate.connection.driver_class" >com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/SSH</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">xin123456</property>
+        <!--配置数据库的方言，比如MySQL的limit就是方言-->
+        <!--如果不是mysql5Dialect，则不能更新表-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!--可选配置-->
+        <property name="hibernate.show_sql">true</property><!--是否显示SQL语句-->
+        <property name="hibernate.format_sql">true</property><!--是否格式化SQL语句输出到控制台-->
+        <property name="hibernate.hbm2ddl.auto">update</property><!--如果表跟实体类映射配置不一致，是否更新映射配置到数据库中-->
+        <!--c3p0连接池，使用properities文档的vaule不可用，-->
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+
+
+
+<!--<mapping class="xin.yuan.domain.Customer"/>用注解配置hibernate映射跟jpa一样，只需要在这里指定实体类就可以了-->
+        <mapping class="xin.yuan.entity.Customer"/>
+    </session-factory>
+
+
+</hibernate-configuration>

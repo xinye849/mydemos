@@ -1,0 +1,54 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--这里的namespace是对sql进行分类管理，对sql进行隔离-->
+<mapper namespace="dao">
+    <!--在这里进行sql语句的配置-->
+    
+    <!--select标签为查询
+    id:sql语句的标识符(statement的ID）
+    #{name}：占位符，相当于sql中的？  name表示接收的输入参数，参数名为name，
+    parameterType：接收的输入参数类型
+    resultTYpe:输出结果映射的java对象，-->
+    <select id="findUserByName" parameterType="String" resultType="xin.yuan.entity.User">
+        select * from account where name =#{name}
+    </select>
+
+    <!--查询多条用户
+    ${}:可以在字符串中使用，可能引发sql注入-->
+    <select id="findUserByNames" parameterType="xin.yuan.entity.User" resultType="xin.yuan.entity.User">
+        select * from account where name like '%${name}%'
+    </select>
+
+    <!--添加用户 insert 没有resultType,因为是插入数据，所以没有返回类型-->
+    <insert id="addUser" parameterType="xin.yuan.entity.User">
+
+        insert into account(name,sex,money) value (#{name},#{sex},#{money})
+        /*selectKey：查询主键语句
+        select last_insert_id()：只适用于自增主键的查询
+        keyProperty：将查询到的主键注入到parameterType指定的java对象属性中
+        order：selectKey的查询顺序*/
+        <selectKey keyProperty="myId" order="AFTER" resultType="int">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <!--删除操作-->
+    <delete id="deleteUserById" parameterType="xin.yuan.entity.User">
+        delete from account where a_id=#{myId}
+    </delete>
+
+    <!--更新操作-->
+    <update id="updateUser" parameterType="xin.yuan.entity.User">
+        update account set name=#{name},money=#{money},sex=#{sex} where a_id=#{myId}
+    </update>
+    
+    
+
+
+
+
+
+
+
+</mapper>

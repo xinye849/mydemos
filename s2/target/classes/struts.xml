@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--开启开发者模式（在不需要重启服务器的情况下更新配置文件）-->
+    <constant name="struts.devMode" value="true"></constant>
+<!--允许提交的为el表达式这种动态内容，这个不允许的话，表单的el表达式无法处理-->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!--
+    <package name="p1" extends="struts-default">
+        
+        <action name="hello" class="xin.yuan.HelloStruts2" method="execute">
+            <result name="success">/success.jsp</result>
+        </action>
+
+
+        <action name="support" class="xin.yuan.ActionSuport1" method="execute">
+            <result name="success">/success.jsp</result>
+        </action>
+    </package>
+    -->
+
+
+    <!--
+  <package name="user" extends="struts-default">
+
+     <action name="addUser" class="xin.yuan.UserAction" method="addUser">
+          <result name="success" >/success.jsp</result>
+      </action>
+
+      <action name="deleteUser" class="xin.yuan.UserAction" method="deleteUser">
+          <result name="success" >/success.jsp</result>
+      </action>
+
+
+
+
+    </package>
+    -->
+
+    <!--使用通配符完成上面所以得操作-->
+    <!--*代表所有的name路径，{1}代表第一个通配符的值（路径名必须与方法同名）-->
+    <package name="p3" extends="struts-default">
+        <!--允许使用通配符-->
+        <!--action中的name为jsp中URL中最后一个/里的值-->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="*" class="xin.yuan.UserAction" method="{1}">
+            <result name="success">/success.jsp</result>
+        </action>
+    </package>
+
+    <package name="p4" extends="struts-default">
+        <!--允许使用通配符-->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <action name="**" class="xin.yuan.{2}Action" method="{1}{2}">
+            <!--method的返回值为哪个，就执行哪个result
+            type指以指定方式跳转到页面-->
+            <result name="success">/success.jsp</result>
+            <result name="error" type="dispatcher">/error.jsp</result>
+        </action>
+    </package>
+<!--使用动态方法（!)会动态加载jsp中！后面的方法-->
+    <package name="p5" extends="struts-default">
+        <!--全局结果视图，定义在package内，对整个包内的action都有效，
+        当在action中找不到符合条件的result时，
+        会在全局结果视图中寻找，也就是说，全局结果视图的优先级小于局部结果视图。-->
+        <global-results>
+            <result name="success">/success.jsp</result>
+        </global-results>
+        <!--允许使用通配符-->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <action name="user" class="xin.yuan.UserAction" method="">
+            <result name="success">/success.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bootstrapFirst</title>
+    <!--支持移动设备优先-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+
+<style>
+
+
+
+
+
+</style>
+<body>
+
+<div class="container" style="background:url(tupian/nvdi2.jpg)">
+
+   账号： <input type="text"/>
+</div>
+bootstrap你好
+<div class="container">css固定宽度容器</div>
+<div class="container-fluid">css百分百宽度容器</div>
+<div class="container-fluid">
+
+    <p class="text-center">居中</p>
+    <p class="text-left">最左边对齐</p>
+    <p class="text-right">最右边对齐</p>
+    <p class="text-uppercase">hello</p>
+    <p class="text-lowercase">MY NAME IS</p>
+    <p class="text-capitalize">xiong yuan xin</p>
+
+</div>
+<div class="container-fluid">
+    <ul class="list-unstyled">
+        <li>无序列表去点</li>
+        <li>无序列表去点</li>
+    </ul>
+
+</div>
+
+<div class="container">
+    <ul class="list-inline">
+        <li>无序列表排成一行</li>
+        <li>无序列表排成一行</li>
+    </ul>
+
+</div>
+<div class="container">
+<table class="table"><!--表格添加了水平分割线-->
+
+    <tr>
+        <td>性别</td>
+        <td>年龄</td>
+        <td>账号</td>
+        <td>密码</td>
+    </tr>
+</table>
+</div>
+
+<div class="container">
+    <table class="table table-bordered"><!--table是所有表格的父按钮，必须写，表格添加了水平分割线和垂直分割线-->
+
+        <tr>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>账号</td>
+            <td>密码</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <table class="table table-bordered table-striped"><!--表格添加了水平分割线和垂直分割线和颜色渐变-->
+
+        <tr>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>账号</td>
+            <td>密码</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <table class="table table-bordered table-hover"><!--表格添加了水平分割线和垂直分割线和鼠标放上去变颜色-->
+
+        <tr>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>账号</td>
+            <td>密码</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="container">
+
+    <input type="button" class="btn btn-default" value="默认按钮"><!--btn是所有按钮的父按钮，必须写-->
+    <input type="submit" class="btn btn-success" value="成功按钮">
+    <input type="submit" class="btn btn-link" value="链接按钮">
+    <a href="#" class="btn btn-success"> 超链接</a>
+</div>
+
+<div class="container-fluid">
+
+    <img src="tupian/nvdi1.jpg" class="img-responsive"><!--响应式图片-->
+</div>
+
+
+
+
+<div class="container" >
+<form action="#" class="form-horizontal">
+    <div class="form-group">
+        <label for="user" class="col-md-4 control-label">用户名</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="user" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pswd" class="col-md-4 control-label">密码</label>
+        <div class="col-md-4">
+            <input type="password" class="form-control" id="pswd">
+        </div>
+    </div>
+
+
+
+</form>
+</div>
+<!--组件的使用-->
+<div class="container">
+    <span class="glyphicon glyphicon-trash"></span>
+</div>
+
+<!--下拉菜单-->
+<div class="dropdown">
+    <button class="btn btn-success" data-toggle="dropdown">
+       点我查看详情
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">111</a> </li>
+        <li><a href="#">222</a> </li>
+        <li><a href="#">333</a> </li>
+        <li><a href="#">444</a> </li>
+    </ul>
+</div>
+
+<!--分裂式按钮下拉菜单-->
+<div class="container-fluid btn-group">
+    <button type="button" class="btn btn-success">点我查看</button>
+    <button type="button" class="btn btn-success " data-toggle="dropdown">
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li><a href="#">Separated link</a></li>
+    </ul>
+</div>
+</body>
+</html>

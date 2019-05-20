@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SH/SH.iml" filepath="$PROJECT_DIR$/SH/SH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSH/SSH.iml" filepath="$PROJECT_DIR$/SSH/SSH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fileUpload/fileUpload.iml" filepath="$PROJECT_DIR$/fileUpload/fileUpload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hibernate-jpa/hibernate-jpa.iml" filepath="$PROJECT_DIR$/hibernate-jpa/hibernate-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hibernateFirst/hibernateFirst.iml" filepath="$PROJECT_DIR$/hibernateFirst/hibernateFirst.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javascriptTest/javascriptTest.iml" filepath="$PROJECT_DIR$/javascriptTest/javascriptTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/s2/s2.iml" filepath="$PROJECT_DIR$/s2/s2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springMVCFirst/springMVCFirst.iml" filepath="$PROJECT_DIR$/springMVCFirst/springMVCFirst.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts2First/struts2First.iml" filepath="$PROJECT_DIR$/struts2First/struts2First.iml" />
+    </modules>
+  </component>
+</project>

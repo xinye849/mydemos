@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>密码强弱</title>
+    <style>
+        td{
+            font: 12px 宋体;
+            width: 100px;
+        }
+
+
+    </style>
+
+    <script>
+
+        window.onload = function () {
+
+            document.getElementById("pw").onkeyup = function ()
+
+            {
+                var passworld = this.value;
+            var pWL = getPWLevel(passworld);
+            var tds = document.getElementById("tb1").getElementsByTagName("td");
+            for (var i = 0;i<tds.length;i++){
+                tds[i].style.backgroundColor = "white";
+            }
+            if(passworld.length>0){
+
+                switch (pWL) {
+                    case 0 :
+                    case 1 :
+                    case 2 :
+                        tds[0].style.backgroundColor = "red";
+
+                        break;
+                    case 3 :
+                    case 4 :    tds[0].style.backgroundColor = "orange";
+                        tds[1].style.backgroundColor = "orange";
+
+                        break;
+
+
+                    case 5 :    tds[0].style.backgroundColor = "green";
+                        tds[1].style.backgroundColor = "green";
+                        tds[2].style.backgroundColor = "green";
+                        break;
+
+
+
+                }
+            }
+
+
+        }
+
+
+            
+            
+            
+            function getPWLevel(pw) {
+                var level = 0;
+                if (pw.match(/\d+/)){level++} ;//match是装正则表达式的方法
+                console.log(pw.match(/\d+/))
+                if (pw.match(/[a-z]+/)){level++};
+                if (pw.match(/[A-Z]+/)){level++} ;
+                if (pw.match(/[^0-9a-zA-Z]+/)){level++};
+                if (pw.length>5){level++};
+
+                return level;
+                
+                
+            }
+
+        }
+    </script>
+</head>
+<body>
+    请输入密码：<input type="password"  id = "pw" name = "pw "/>
+
+<table  id="tb1" border="0" cellpadding="0" cellspacing="0">
+
+    <tr>
+        <td>弱</td>
+        <td>中</td>
+        <td>强</td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>

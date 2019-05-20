@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+   <bean id="userService" class="xin.yuan.service.impl.UserServiceImpl">
+       <property name="userMapper" ref="userMapper"></property>
+   </bean>
+
+
+
+
+
+
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+
+        <!-- 指定Mybatis配置文件 -->
+        <property name="configLocation" value="mybatis/MybatisConfig.xml"></property>
+
+        <!-- 指定Mybatis映射文件，*.xml 会匹配所有xml文件 -->
+         <!--<property name="mapperLocations" value="xin/yuan/mapper/*.xml"></property>-->
+
+    </bean>
+<!--单个注入mapper（dao）接口，让接口给spring管理
+MapperFactoryBean:根据mapper接口生成代理对象-->
+    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        &lt;!&ndash;生成usermapper代理对象&ndash;&gt;
+        <property name="mapperInterface" value="xin.yuan.mapper.UserMapper"></property>
+    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>-->
+
+    <!--批量注入maper（dao）接口，批量扫描出来的mapper的bean的id为mapper类名（首字母小写），
+    MapperScannerConfigurer不但扫描接口，而且还扫描了mapper映射文件，所以，映射文件可以不用了-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--扫描多个包时，用逗号隔开-->
+        <property name="basePackage" value="xin.yuan.mapper"></property>
+        <!--sqlSessionFactoryBeanName可以避免DataSource加载失败-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/xiongyuanxin"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="xin123456"></property>
+    </bean>
+
+</beans>

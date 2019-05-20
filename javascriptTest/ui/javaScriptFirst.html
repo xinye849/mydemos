@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javaScript</title>
+
+
+</head>
+<body>
+<div id="box1">
+    <div id="box2">hello</div>
+    <div id="h2">world</div>
+</div>
+<form action="aa.jsp" method="post">
+
+    <input type="text" name="name" value="姓名"/>姓名<br>
+    <input type="text" name="password" value="密码"/>密码<br>
+    <input type="radio" name="sex" value="男"/>男
+    <input type="radio" name="sex" value="女"/>女<br>
+    <input type="submit" value="提交"/><br>
+</form>
+<div>
+
+    <input type="button" name="button" value="点我"/>
+
+</div>
+<div>ddsds</div>
+
+<script>
+    //document对象查找的范围并不是一层（head/body），而是整个HTML文档，
+    //var box2 = document.getElementById("box2");//根据ID得到元素对象，查找的是整个文档中名为box2的元素对象
+   // h1s = document.getElementsByTagName("div");//根据标签名得到通标签名的一组元素对象
+
+    //for(var i =0;i<=h1s.length;i++){
+        //var h1 = h1s[i];
+       // console.log(h1);
+
+   // }
+
+   // console.log(box2);
+   // var sexs = document.getElementsByName("sex");//根据name属性得到元素对象
+   // console.log(sexs);
+    var buton = document.getElementsByName("button");
+
+    buton[0].onclick = function () {//onclick为事件源添加点击事件
+        alert("别点我");
+        return false;//取消事件源的默认事件
+
+    }
+
+
+</script>
+</body>
+</html>

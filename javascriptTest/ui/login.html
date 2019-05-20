@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form action="login.html" >
+<!--placeholder：为文本框显示提示信息
+        //onblur:文本框失去焦点-->
+        用户名：<input type="text"  id="name" onblur="upperCase()" ><p id="h1"></p><br>
+        密码：<input type="password" id="pswd" value=""><h2 id="h2"></h2><br>
+        <input type="submit" value="提交"  id="btn">
+    </form>
+
+
+<script type="text/javascript">
+
+    function upperCase() {
+        var name = document.getElementById("name");
+        var str = "<h1>大哥，请注意尺寸</h1>";
+        var h1 = document.getElementById("h1");
+        if (name.value.length < 3 || name.value.length > 6) {
+
+            h1.innerHTML = str;
+
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

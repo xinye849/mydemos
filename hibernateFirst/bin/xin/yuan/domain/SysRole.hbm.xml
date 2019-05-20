@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="xin.yuan.domain">
+    <class name="SysRole" table="tb_sysrole">
+        <id name="roleId" column="role_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="roleName" column="role_name"></property>
+        <property name="roleMemo" column="role_memo"></property>
+
+
+        <!--配置多对多关系映射-->
+        <!--跟另一个多方的配置一样-->
+        <!--多对多关系中，如果中间表中只有两个表中的主键作为外键，没有其他表字段了的话，中间表可以不用建立，
+        否则，一定要建立中间表，并分别与中间表建立一对多关系-->
+        <set name="users" table="user_roll_tb"><!--用于指定中间表-->
+            <key column="role_id"></key><!--给中间表指定自己的外键-->
+            <many-to-many class="SysUser" column="user_id" ></many-to-many><!--指向对方在中间表的外键名称-->
+        </set>
+
+
+
+    </class>
+
+
+
+</hibernate-mapping>

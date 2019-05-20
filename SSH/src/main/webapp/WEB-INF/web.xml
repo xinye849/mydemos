@@ -1,0 +1,40 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>ssh</display-name>
+
+  <!--虽然监听器默认只能加载WEB-INF下的spring配置文件，但是，我们可以手动指定spring配置文件的位置，让监听器来读配置-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name><!--这个名字是位置的键名，必须这样写-->
+    <param-value>classpath:applicationContext.xml</param-value><!--把spring配置文件指定在类路径下-->
+  </context-param>
+
+
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
+
+
+
+<!--配置spring提供的监听器，监听servletcontext对象的创建，同时为我们创建spring容器,并把容易存入了application域中。
+默认情况下：spring提供的这个监听器只能加载WEB-INF 目录下且名称为applicationContext的spring配置文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+
+  </listener>
+
+
+
+
+
+</web-app>

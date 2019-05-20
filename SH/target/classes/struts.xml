@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <!--开启开发者模式（在不需要重启服务器的情况下更新配置文件）-->
+    <constant name="struts.devMode" value="true"></constant>
+    
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!--允许ognl访问静态方法-->
+<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    <package name="customer" extends="struts-default">
+
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <action name="findAllCustomer" class="xin.yuan.action.CustomerAction" method="findAllCustomer">
+            <result name="success" >/customerList.jsp</result>
+        </action>
+
+        <action name="hobby4" class="xin.yuan.action.HobbyAction" method="subHobby4">
+
+            <result>/success.jsp</result>
+            <result name="input">/hobby.jsp</result><!--input表示表单数据格式错误时，跳转到的页面-->
+        </action>
+
+
+    </package>
+
+    <package name="insertCustomer" extends="struts-default" >
+
+        <action name="insertCustomer" class="xin.yuan.action.CustomerAction" method="insertCustomer">
+            <result>/success.jsp</result>
+        </action>
+    </package>
+
+    <package name="ognl" extends="struts-default" >
+        <action name="ognl" class="xin.yuan.action.ActionContextDemo" method="domo1">
+            <result name="success">/ognl.jsp</result>
+        </action>
+    </package>
+
+
+    <package name="interceptor" extends="struts-default">
+<!--自定义拦截器，如果我们写了自己的拦截器,那默认的拦截器就不会起作用了,要想让默认拦截器继续生效，必须手动引用一把<interceptor-ref name="defaultStack"></interceptor-ref>-->
+        <interceptors>
+            <interceptor name="myinterceptor" class="xin.yuan.interceptors.MyInterceptor">
+
+                
+            </interceptor>
+        </interceptors>
+        <action name="interceptor" class="xin.yuan.action.ActionContextDemo" method="domo1">
+
+            <!--要让自定义拦截器生效，必须引用拦截器，在action内部引用，有多个拦截器时，引用拦截器的顺序就是拦截器的执行顺序-->
+            <interceptor-ref name="myinterceptor"></interceptor-ref>
+            <result name="success">/ognl.jsp</result>
+
+        </action>
+    </package>
+
+<package name="Mydefault" extends="struts-default">
+    <interceptors>
+        <interceptor name="checkLogin" class="xin.yuan.interceptors.CheckInterceptor">
+
+        </interceptor>
+    </interceptors>
+    <!--当一个Action返回的String没有相应的<result>与之对应，Struts2就会查找全局的<result>-->
+    <global-results>
+        <result name="login">/login.jsp</result>
+    </global-results>
+</package>
+
+    <package name="login" extends="Mydefault">
+        <action name="demo1" class="xin.yuan.action.LoginAction" method="demo1">
+            <interceptor-ref name="checkLogin"></interceptor-ref>
+
+            <result name="success">/demo1.jsp</result>
+
+        </action>
+
+        <action name="demo2" class="xin.yuan.action.LoginAction" method="demo2">
+            <interceptor-ref name="checkLogin"></interceptor-ref>
+            <result name="success">/demo2.jsp</result>
+        </action>
+
+        <action name="demo3" class="xin.yuan.action.LoginAction" method="demo3">
+            <interceptor-ref name="checkLogin"></interceptor-ref>
+          <result name="success">/demo3.jsp</result>
+        </action>
+
+        <action name="userLogin" class="xin.yuan.action.LoginAction" method="userLogin">
+                    <result name="success" type="redirect">/main.jsp</result>
+        </action>
+    </package>
+
+</struts>

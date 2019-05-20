@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+
+        <!--解决日志无法输出问题-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--为entity设置别名,设置了别名之后在map映射表中的输入输出就可以使用别名了-->
+    <typeAliases>
+        <!--单个别名定义-->
+        <!--<typeAlias type="xin.yuan.entity.User" alias="user"></typeAlias>-->
+        <!--批量别名定义:只需给定包名，mybaties会自动把包内所有类定义别名，自动定义的别名为类名（首字母大写和小写都定义了一个）-->
+        <package name="xin.yuan.entity"></package>
+    </typeAliases>
+
+
+
+
+    <!--加载映射文件-->
+   <!-- <mappers>
+
+
+
+        &lt;!&ndash;批量加载映射文件：批量扫描所有mapper接口加载xml文件，必须使用mapper接口代理方式开发才能使用批量加载，且mapper接口名与映射文件名保持一致，
+        且它俩必须在同一个目录中&ndash;&gt;
+        <package name="xin.yuan.userMapper"/>
+    </mappers>
+-->
+</configuration>

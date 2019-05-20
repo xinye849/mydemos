@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title >这是一个滚动条</title>
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            setInterval(function () {
+                var strs = document.getElementById("h1").innerText;
+                 var titles = document.title;
+                var firstChar = strs.charAt(0);
+               var firstTitle = titles.charAt(0);
+                var otherChar = strs.substring(1);
+               var otherTitles = titles.substring(1);
+                document.getElementById("h1").innerText = otherChar+firstChar;
+               document.title = otherTitles + firstTitle;
+
+            },1000)
+
+        }
+    </script>
+</head>
+<body>
+<h1 id="h1">这是一个滚动页面</h1>
+</body>
+</html>

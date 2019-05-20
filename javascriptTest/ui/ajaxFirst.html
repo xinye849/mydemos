@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+   <!--<script type="text/javascript" >
+        var xhr = new XMLHttpRequest();
+        xhr.open('get','login.html');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) {
+                return false;
+            }
+            $('#pp').html(this.responseText);
+
+        }
+    </script>
+-->
+
+    <!--<script type="text/javascript" >
+        var xhr = new XMLHttpRequest();
+        xhr.setRequestHeader('content-Type','application/x-www-form-urlencoded')//post请求以表单格式提交时，必须设置此请求头
+        xhr.open('post','login.html');
+        xhr.send('name=value&password=value');
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) {
+                return false;
+            }
+            $('#pp').html(this.responseText);
+
+        }
+    </script>
+    -->
+
+    <!--<script type="text/javascript">
+       $.ajax('login.html',{
+           type: 'post',//method
+           success: function (x) {//success表示状态码为4，x为状态码为4时的responseText
+               $('#pp').html(x);
+           }
+       })
+    </script>
+    -->
+    <!--<script type="text/javascript">
+        $.ajax({
+            url:'login.html',
+            type:'post',
+            data:{name:'zs',age:15},
+            success:function (x) {
+                $('#pp').html(x);
+            }
+        })
+    </script>
+    -->
+</head>
+<body>
+<input type="button" onclick="che()" value="点我" />
+<p id="pp"></p>
+</body>
+<script type="text/javascript">
+    function che() {
+        $.get('login.html',function (data) {
+            $('#pp').html(data);
+        })
+
+    }
+</script>
+</html>

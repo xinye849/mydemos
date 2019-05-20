@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+<!--让spring托管action对象-->
+    <bean id="CustomerAction" class="xin.yuan.action.CustomerAction" scope="prototype"><!--默认情况下，spring创建的对象都是单例的，而action对象是多例的，scope指定action对象是单例还是多例，prototype为多例-->
+        <property name="customerService" ref="customerService"></property><!--此时的custerservice对象的注入不再是由Struts2提供，而是由spring提供-->
+    </bean>
+
+    <!--配置service对象-->
+    <bean id="customerService" class="xin.yuan.service.impl.CustomerServiceImpl">
+
+       <!--set注入时的name的值是set方法去掉set并且把首字母改小写的名-->
+        <property name="customerDao" ref="customerDao"></property>
+    </bean>
+    <!--配置dao-->
+    <bean id="customerDao" class="xin.yuan.dao.impl.customerDaoImpl">
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--hibernataTemplate的注入-->
+    <!--由于有hibernateDaoSupport的支持，我们只需要注入sessionFactory就行了，sessionfactory里可以生成hibernataTemplate对象-->
+    <!--<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    -->
+
+    <!--spring接管sessionfactory的创建,用spring提供的sessionfactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+        <!--加载配置文件-->
+        <!--<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>-->
+<!--升级版：我们可以把hibernate.cfh.xml配置文件删掉，把配置文件的内容注入到spring中来，让spring托管，所以，这里把上面的配置文件先注掉。也把hibernate.cfg.xml删掉。-->
+        <!-- 1.数据源(把数据源放到连接池上,由于sessionFactory需要连接池，所以给factory加上连接池，然后在连接池中注入数据源）-->
+        <property name="dataSource" ref="dataSource"></property>
+
+        <!--2.hibernate的可选配置-->
+        <property name="hibernateProperties">
+            <props>
+
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+
+
+
+            </props>
+
+        </property>
+
+        <!--3.hibernate的映射配置(基于注解的)，基于map映射文件的这里不示范-->
+        <property name="packagesToScan" value="xin.yuan.entity"></property>
+
+        <!--做到这一步，就可以把hibernate.cfg.xml删掉了-->
+    </bean>
+
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/SSH"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="xin123456"></property>
+
+    </bean>
+
+
+
+
+
+<!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+       <!--事务管理器也需要sessionfactory拿到数据源-->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+
+
+
+    </bean>
+
+
+
+<!--配置事物的通知（相当于增强类中的方法）-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--事物要应用到的方法,*表示所有的方法-->
+            <tx:method name="*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+<!--aop切面配置-->
+    <aop:config >
+        <!--配置切入点表达式。第一个*代表返回值，第二*代表impl包下的类，第三个*代表方法名，“（..）”代表方法参数。 -->
+        <aop:pointcut id="pt1" expression="execution(* xin.yuan.service.impl.*.*(..))"/>
+        <!--建立切入点与事物通知的关联-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
+    </aop:config>
+</beans>

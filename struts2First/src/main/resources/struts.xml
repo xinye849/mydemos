@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+
+    <!--开启开发者模式（在不需要重启服务器的情况下更新配置文件）-->
+    <constant name="struts.devMode" value="true"></constant>
+<!--packet作用：给访问的action进行分包管理-->
+    <package name="P1" extends="struts-default">
+
+        <action name="hello" class="xin.yuan.TestAction" method="execute">
+            <result name="success" type="dispatcher">/success.jsp</result><!--name的值为上边execute方法的返回值一样，执行转发-->
+        </action>
+
+    </package>
+
+</struts>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="xin.yuan.domain">
+    <class name="LinkMan" table="tb_linkman">
+        <id name="lkmId" column="lkm_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="lkmName" column="lkm_name"></property>
+        <property name="lkmGender" column="lkm_gender"></property>
+        <property name="lkmPhone" column="lkm_phone"></property>
+        <property name="lkmMobil" column="lkm_mobil"></property>
+        <property name="lkmEmail" column="lkm_email"></property>
+        <property name="lkmPosition" column="lkm_position"></property>
+        <property name="lkmMemo" column="lkm_memo"></property>
+<!--配置从表中的多对一映射关系-->
+        <!--从表自己为自己申明外键-->
+        <many-to-one name="customer" class="xin.yuan.domain.Customer" column="lkm_cust_id"></many-to-one>
+
+
+
+    </class>
+
+
+
+</hibernate-mapping>

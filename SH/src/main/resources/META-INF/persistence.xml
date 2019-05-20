@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--hibernate中jpa规范的主配置文件-->
+
+
+<!--jpa持久化约束-->
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+            http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <!--配置持久化单元，name为持久化单元名称，可以有多个持久化单元，但是名称不可以相同。
+    transaction-type为指定事物类型，RESOUREC_LOCAL为使用本地事物，一般用此种形式，还有一个就是JTA，只是一套接口，具体实现要自己写，一般不用-->
+          <persistence-unit name="SHJpa" transaction-type="RESOURCE_LOCAL">
+
+                <properties>
+                    <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+                    <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/SH_db"/>
+                    <property name="hibernate.connection.username" value="root"/>
+                    <property name="hibernate.connection.password" value="xin123456"/>
+
+
+                    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+                    <property name="hibernate.show_sql" value="true"/>
+                    <property name="hibernate.format_sql" value="true"/>
+                    <property name="hibernate.hbm2ddl.auto" value="update"/>
+                    <property name="hibernate.connection.provider_class" value="org.hibernate.c3p0.internal.C3P0ConnectionProvider"/>
+
+
+
+                </properties>
+
+
+
+
+    </persistence-unit>
+
+</persistence>

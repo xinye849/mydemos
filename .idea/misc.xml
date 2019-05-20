@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/fileUpload" />
+    <file type="web" url="file://$PROJECT_DIR$/mavenWeb" />
+    <file type="web" url="file://$PROJECT_DIR$/mybatis" />
+    <file type="web" url="file://$PROJECT_DIR$/s2" />
+    <file type="web" url="file://$PROJECT_DIR$/SH" />
+    <file type="web" url="file://$PROJECT_DIR$/springMVCFirst" />
+    <file type="web" url="file://$PROJECT_DIR$/SSH" />
+    <file type="web" url="file://$PROJECT_DIR$/struts2First" />
+    <file type="web" url="file://$PROJECT_DIR$/WebTest" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/struts2First/pom.xml" />
+        <option value="$PROJECT_DIR$/s2/pom.xml" />
+        <option value="$PROJECT_DIR$/SH/pom.xml" />
+        <option value="$PROJECT_DIR$/SSH/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/springMVCFirst/pom.xml" />
+        <option value="$PROJECT_DIR$/fileUpload/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://ehcache.org/ehcache.xsd" location="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

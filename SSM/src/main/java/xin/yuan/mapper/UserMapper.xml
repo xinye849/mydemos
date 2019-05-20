@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的namespace是mybatis规范，必须是mapper接口，不然不能实现mapper代理-->
+<mapper namespace="xin.yuan.mapper.UserMapper">
+
+
+    <select id="findUserById" parameterType="int" resultType="user">
+     select * from account where a_id =#{value}
+    </select>
+
+
+
+
+</mapper>

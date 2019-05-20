@@ -1,0 +1,30 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的namespace是mybatis规范，必须是mapper接口，不然不能实现mapper代理-->
+<mapper namespace="xin.yuan.userMapper.UserMapper">
+   <!--开启mapper中的namespace的二级缓存
+   这里使用的是encache的二级缓存，默认使用mybaties自家的二级缓存-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"  />
+    <!--输出映射有resultType和resultMap.
+    resultType:要想映射成功，必须entity的属性和表字段同名，否则映射失败，所以，它一般使用在简单类型输出-->
+    <select id="findUserById" parameterType="int" resultType="User">
+     select * from account where a_id =#{myId}
+    </select>
+
+    <!--resultMap可以将entity属性和表字段不同名映射成功，如要使用resultmap，需先定义
+    id:resultMap的唯一标识，
+    type：映射的entity类
+    column:表字段名
+    property:entity属性名
+    result:相当于hibernate注解映射中的column
+    id：相当于hibernate注解映射中的id-->
+    <resultMap id="userResultMap" type="user">
+        <id column="a_id" property="myId"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="money" property="money"/>
+    </resultMap>
+    <select id="findUserByIdForResultMap" parameterType="int" resultMap="userResultMap">
+        select * from account where a_id =#{myId}
+    </select>
+</mapper>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片</title>
+</head>
+<body>
+    <div id="div1">
+        <img src="tupian/nvdi1.jpg" width="200px" height="200px" alt="女帝1">
+        <img src="tupian/nvdi2.jpg" width="200px" height="200px" alt="女帝2">
+        <img src="tupian/nvdi3.jpg" width="200px" height="200px" alt="女帝3">
+        <img src="tupian/nvdi4.jpg" width="200px" height="200px" alt="女帝4">
+        <img src="tupian/nvdi5.jpg" width="200px" height="200px" alt="女帝5">
+    </div>
+    <div id="div2">
+
+        <img  src="" height="300" width="1000"/>
+        <p >这个是女帝</p>
+    </div>
+
+
+<script>
+
+     var div1 = document.getElementById("div1");
+     var div2 = document.getElementById("div2");
+     var img2 = div2.getElementsByTagName("img");
+
+     var p = div2.getElementsByTagName("p");
+
+    var img = div1.getElementsByTagName("img");
+    for(var i=0;i<img.length;i++){
+
+        img[i].onclick = function () {
+
+          img2[0].src = this.src;
+
+          p[0].innerText = this.alt;//为标签内部添加内容 例：<h1>这里是标签内部<h1>
+//innerText和innerHTML的区别：innerHtml包含标签
+
+        }
+    }
+
+
+</script>
+</body>
+</html>

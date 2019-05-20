@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fileUpload" />
+        <module name="mybatis" />
+        <module name="s2" />
+        <module name="SH" />
+        <module name="springMVCFirst" />
+        <module name="SSH" />
+        <module name="struts2First" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fileUpload" target="1.7" />
+      <module name="mavenFirst" target="1.7" />
+      <module name="mavenSecond" target="1.5" />
+      <module name="mavenWeb" target="1.5" />
+      <module name="mybatis" target="1.7" />
+      <module name="s2" target="1.7" />
+      <module name="SH" target="1.7" />
+      <module name="springMVCFirst" target="1.8" />
+      <module name="SSH" target="1.7" />
+      <module name="struts2First" target="1.7" />
+      <module name="WebTest" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

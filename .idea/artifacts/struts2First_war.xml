@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="struts2First:war">
+    <output-path>$PROJECT_DIR$/struts2First/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>struts2First</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="struts2-archetype-starter.war">
+      <element id="artifact" artifact-name="struts2First:war exploded" />
+    </root>
+  </artifact>
+</component>

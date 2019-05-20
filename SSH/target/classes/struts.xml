@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <!--开启开发者模式（在不需要重启服务器的情况下更新配置文件）-->
+    <constant name="struts.devMode" value="true"></constant>
+    
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!--允许ognl访问静态方法-->
+<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+
+
+    <package name="customer" extends="struts-default">
+
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+<!--把class下的包名去掉，只留下action类名，这样，Struts2就不能通过反射创建action对象了，这时，Struts2就会去spring的配置文件找和action类同名的bean，这样，就实现了action对象由spring创建托管了。-->
+        <action name="findAllCustomer" class="CustomerAction" method="findAllCustomer">
+            <result name="success" >/menu.jsp</result>
+            <result name="input">/index.jsp</result>
+        </action>
+
+        <action name="addCustomer" class="CustomerAction" method="addCustomer">
+            <result name="success" type="redirectAction">findAllCustomer</result>
+            <result name="input">/index.jsp</result>
+        </action>
+
+
+
+
+    </package>
+
+
+
+</struts>
